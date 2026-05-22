@@ -13,10 +13,19 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('client_id')->nullable()->index();
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->boolean('is_admin')->default(false);
+            $table->boolean('has_adhd')->default(false);
+            $table->boolean('has_autism')->default(false);
+            $table->boolean('has_anxiety')->default(false);
+            $table->boolean('medication')->default(false);
+            $table->boolean('in_treatment')->default(false);
+            $table->string('two_factor_code')->nullable();
+            $table->timestamp('two_factor_expires_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

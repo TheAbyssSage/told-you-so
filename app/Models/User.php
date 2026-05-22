@@ -17,6 +17,8 @@ use Illuminate\Notifications\Notifiable;
     'password',
     'client_id',
     'is_admin',
+    'is_psychologist',
+    'psychologist_id',
     'has_adhd',
     'has_autism',
     'has_anxiety',
@@ -43,6 +45,7 @@ class User extends Authenticatable
             'two_factor_expires_at' => 'datetime',
             'password' => 'hashed',
             'is_admin' => 'boolean',
+            'is_psychologist' => 'boolean',
             'has_adhd' => 'boolean',
             'has_autism' => 'boolean',
             'has_anxiety' => 'boolean',
@@ -59,6 +62,16 @@ class User extends Authenticatable
     public function bookings(): HasMany
     {
         return $this->hasMany(Booking::class);
+    }
+
+    public function psychologist(): BelongsTo
+    {
+        return $this->belongsTo(Psychologist::class);
+    }
+
+    public function isPsychologist(): bool
+    {
+        return $this->is_psychologist && $this->psychologist_id !== null;
     }
 
     public function canAccessFilament(): bool

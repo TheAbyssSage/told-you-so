@@ -44,6 +44,14 @@ class DatabaseSeeder extends Seeder
         $availabilitySlots = [];
 
         foreach ($psychologists as $psychologist) {
+            User::factory()->create([
+                'name' => $psychologist->name,
+                'email' => $psychologist->email,
+                'password' => 'password',
+                'is_psychologist' => true,
+                'psychologist_id' => $psychologist->id,
+            ]);
+
             $availabilitySlots[] = Availability::create([
                 'psychologist_id' => $psychologist->id,
                 'title' => 'Initial consultation',

@@ -26,6 +26,13 @@
                     <h2 class="font-semibold text-slate-900">Availability</h2>
                     <p class="mt-2 text-slate-600">Browse psychologist availability and book a session.</p>
                 </a>
+
+                @if(auth()->user()->isPsychologist())
+                    <a href="{{ route('psychologist.dashboard') }}" class="rounded-2xl border border-slate-200 bg-slate-50 px-5 py-5 text-left hover:bg-slate-100">
+                        <h2 class="font-semibold text-slate-900">Psychologist panel</h2>
+                        <p class="mt-2 text-slate-600">Manage your own availability and review booked sessions.</p>
+                    </a>
+                @endif
             @endguest
         </div>
     </div>

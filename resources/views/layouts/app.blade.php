@@ -26,9 +26,12 @@
                     <a href="{{ route('info.show', 'angst') }}" class="hover:text-slate-900">Angst</a>
                     @auth
                         <a href="{{ route('dashboard') }}" class="hover:text-slate-900">Dashboard</a>
-                        <a href="{{ route('availability.index') }}" class="hover:text-slate-900">Availability</a>
-                        <a href="{{ route('bookings.index') }}" class="hover:text-slate-900">Bookings</a>
-                        <form method="POST" action="{{ route('logout') }}" class="inline">
+                    <a href="{{ route('availability.index') }}" class="hover:text-slate-900">Availability</a>
+                    <a href="{{ route('bookings.index') }}" class="hover:text-slate-900">Bookings</a>
+                    @if(auth()->user()->isPsychologist())
+                        <a href="{{ route('psychologist.dashboard') }}" class="hover:text-slate-900">Psychologist panel</a>
+                    @endif
+                    <form method="POST" action="{{ route('logout') }}" class="inline">
                             @csrf
                             <button type="submit" class="text-slate-700 hover:text-slate-900">Logout</button>
                         </form>
